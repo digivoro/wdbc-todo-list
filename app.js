@@ -1,5 +1,6 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+const date = require(__dirname + "/date.js");
 
 const app = express();
 app.set("view engine", "ejs");
@@ -8,6 +9,8 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 
+let day = date.getDate();
+
 // VARIABLES
 let items = ["Buy Food", "Cook Food", "Eat Food"];
 let workItems = [];
@@ -15,13 +18,6 @@ let workItems = [];
 // GET ROUTES
 // GET-"/"
 app.get("/", (req, res) => {
-    let today = new Date();
-    let options = {
-        weekday: "long",
-        day: "numeric",
-        month: "long"
-    }
-    let day = today.toLocaleDateString("en-US", options); // es-419: Spanish for LA&Caribbean
 
     res.render("list", {
         listTitle: day, //First "day" is the key, corresponds to "day" in .ejs file
