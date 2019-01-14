@@ -10,6 +10,7 @@ app.use(bodyParser.urlencoded({
 
 // VARIABLES
 let items = ["Buy Food", "Cook Food", "Eat Food"];
+let workItems = [];
 
 // GET ROUTES
 // GET-"/"
@@ -23,8 +24,15 @@ app.get("/", (req, res) => {
     let day = today.toLocaleDateString("en-US", options); // es-419: Spanish for LA&Caribbean
 
     res.render("list", {
-        day: day, //First "day" is the key, corresponds to "day" in .ejs file
+        listTitle: day, //First "day" is the key, corresponds to "day" in .ejs file
         items: items
+    });
+});
+
+app.get("/work", (req, res) => {
+    res.render("list.ejs", {
+        listTitle: "Work List",
+        items: workItems
     });
 });
 
@@ -32,6 +40,11 @@ app.get("/", (req, res) => {
 app.post("/", (req, res) => {
     items.push(req.body.newItem);
     res.redirect("/"); //Redirects to the render() on the Get("/") Route
+});
+
+app.post("/work", (req, res) => {
+    workItems.push(req.body.newItem);
+    res.redirect("/work");
 });
 
 // LISTEN
