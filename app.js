@@ -38,13 +38,13 @@ app.get("/work", (req, res) => {
 
 // POST ROUTES
 app.post("/", (req, res) => {
-    items.push(req.body.newItem);
-    res.redirect("/"); //Redirects to the render() on the Get("/") Route
-});
-
-app.post("/work", (req, res) => {
-    workItems.push(req.body.newItem);
-    res.redirect("/work");
+    if (req.body.list === "Work") {
+        workItems.push(req.body.newItem);
+        res.redirect("work");
+    } else {
+        items.push(req.body.newItem);
+        res.redirect("/"); //Redirects to the render() on the Get("/") Route
+    }
 });
 
 // LISTEN
