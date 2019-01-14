@@ -16,7 +16,6 @@ let items = ["Buy Food", "Cook Food", "Eat Food"];
 let workItems = [];
 
 // GET ROUTES
-// GET-"/"
 app.get("/", (req, res) => {
 
     res.render("list", {
@@ -47,7 +46,7 @@ app.post("/", (req, res) => {
     }
 });
 
-// LISTEN
+// LISTEN PORT
 app.listen(3000, () => {
     console.log("App.js server listening on PORT 3000");
 });
