@@ -30,10 +30,14 @@ app.get("/", (req, res) => {
 });
 
 app.get("/work", (req, res) => {
-    res.render("list.ejs", {
+    res.render("list", {
         listTitle: "Work List",
         items: workItems
     });
+});
+
+app.get("/about", (req, res) => {
+    res.render("about", {});
 });
 
 // POST ROUTES
